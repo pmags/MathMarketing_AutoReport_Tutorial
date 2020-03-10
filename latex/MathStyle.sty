@@ -1,0 +1,101 @@
+%----------------------------------------------------------------------------------------
+%	REQUIRED PACKAGES
+%
+% pdfpages:(http://mirrors.up.pt/pub/CTAN/macros/latex/contrib/pdfpages/pdfpages.pdf)
+% geometry: (https://www.overleaf.com/learn/latex/Page_size_and_margins)
+% fancyhdr: (https://www.overleaf.com/learn/latex/Headers_and_footers)
+% xcolor: (https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX)
+% titlesec: https://www.overleaf.com/learn/latex/Sections_and_chapters
+%----------------------------------------------------------------------------------------
+
+\usepackage{pdfpages} %allows the introduction of pdf pages 
+\usepackage{fancyhdr} %changes headers and footers
+\usepackage{xcolor} %Lets set different colors for the document
+\usepackage{titlesec} %customizes chapters(book) and sections(article)
+\usepackage{tikz}
+\usepackage{fontspec} %customizes fonts
+\usepackage{graphicx} %add graphical elements
+\usepackage{background} %customizes documents backgrounds
+\usepackage{lastpage}
+\usepackage{caption} % allows image caption costumization
+\usepackage{blindtext}
+\usepackage{tcolorbox}
+
+%----------------------------------------------------------------------------------------
+%	FONTS FORMAT
+%----------------------------------------------------------------------------------------
+
+\setmainfont[SizeFeatures={Size=13}]{Calibri}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT COLORS
+%----------------------------------------------------------------------------------------
+
+\definecolor{DarkPurple}{HTML}{680c62}
+\definecolor{MediumPurple}{HTML}{a8139d}
+\definecolor{LightPurple}{HTML}{c26cf0}
+\definecolor{DarkGray}{gray}{.172}
+
+%----------------------------------------------------------------------------------------
+%	SECTION FORMAT
+%----------------------------------------------------------------------------------------
+
+\titleformat{\section}[block]
+  {\titlerule\addvspace{4pt}\normalfont\fontsize{14}{16}\bfseries}
+  {\thesection\enspace}{0pt}{}[\vspace{2pt}\titlerule]
+
+\titleformat*{\section}{\color{DarkPurple}\normalfont\bfseries\Huge}
+\titleformat*{\subsection}{\color{DarkPurple}\normalfont\bfseries\LARGE}
+\titleformat*{\subsubsection}{\color{MediumPurple}\normalfont\bfseries\LARGE}
+
+%----------------------------------------------------------------------------------------
+%	CUSTOM HEADER AND FOOTER
+%----------------------------------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{} %clear all headers and footer fields
+%\fancyhead[RO,RE]{\textcolor{DarkGray}{math.marketing}}
+\fancyhead[LO,LE]{\textcolor{DarkGray}{\thepage}}
+\renewcommand{\headrulewidth}{0pt} %Eliminates header row that is part of the default
+
+
+\backgroundsetup{
+  scale=1.16,
+  opacity=1,
+  angle=0,
+  position=current page.south,
+  hshift=-27pt,
+  vshift=20pt,
+  contents={%
+  \small\sffamily%
+  \begin{minipage}{1\textwidth}
+  \includegraphics{images/footer.png}
+  \end{minipage}%
+  }
+}
+
+%----------------------------------------------------------------------------------------
+%	CUSTOM IMAGE FORMATING
+%----------------------------------------------------------------------------------------
+
+\captionsetup[figure]{name=Imagem}
+
+%----------------------------------------------------------------------------------------
+%	COVER PAGE
+%----------------------------------------------------------------------------------------
+
+\AtBeginDocument{\let\maketitle\relax}
+
+%----------------------------------------------------------------------------------------
+%	NEW COMMANDS
+%-------------------------------------------------------------------------------------
+
+\newcommand{\textBox}[2]{
+  \begin{tcolorbox}[width=\textwidth,colback={MediumPurple},title={#1},colupper=white]    
+      \textsc{#2}
+      %\blindtext[#2]     
+      %\includegraphics[scale=0.5]{frogimage.png}
+  \end{tcolorbox} 
+}
+
+

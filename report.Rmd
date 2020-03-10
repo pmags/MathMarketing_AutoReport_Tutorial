@@ -1,0 +1,62 @@
+---
+title: "QiDigital_FitnessMarket"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    includes:
+      in_header: latex/MathStyle.sty
+      before_body: latex/before_body.tex
+      after_body: latex/after_body.tex
+    template: latex/MathTemplate.tex
+geometry: margin=2.5cm
+documentclass: article
+subparagraph: yes
+pdf-cover-image: "images/mathCover.pdf"
+report-title: "How fit is your marketing?"
+report-subtitle: "Portuguese Fitness Industry" 
+footer-image: images/footer.png
+---
+
+# General findings
+
+The market for fitness gyms in Portugal has been facing an aggressive growth in the past years. Several large Groups, both national and international either opened or acquired brands and are expanding their networks. Research shows that about 18% of the Portuquese (15y+) went to a Gym/ health club in 2019. That number has been steadily growing since 2013. The Brands evaluated in our study have all invested in digital capabilities to attract, engage and convert people into users. All of them have sign-up forms on their websites and constantly advertise promotions and discounts to attract new clients. However, the digital capabilities of the market have not evolved at the same pace with the number of facilities and lags strength to compete 
+
+## Ads & Analytics
+
+```{r}
+# TODO: Descrever em cada parágrafo o que é cada dimensão
+```
+
+
+Looking at the 8 Brands we evaluated for this study, we see Social, search and display as the main sources for distributing Adverising. No surprise here. However, with an average of 1,7/5 in analytical capabilities. Clearly brands have to work out a lot in order to understand the impact of their advertising investments and, most important, understand the ins and hows of their customer journey. 
+
+\textBox{so what}{1}
+
+\textBox{what can we do}{1}
+
+## Automation
+
+Automation is non-existent in the market. Not one of the brands studied in capable of creating automated conversations with prospects and/or client. In a very competitive service market such as this one, in which the barriers to change are slim, it is surprising that companies have not invested in ways to build relationships with customers and leads outside of the physical space of the gyms themselves.
+
+\textBox{so what}{1}
+
+# Botton line
+
+Companies that invest in their analytical capabilities will be better equipped to understand what drives customer purchases and will better invest in attracting new ones. Connecting that knowledge with automation tools will decrease the cost of client acquisition and increase engagement with customers and leads. 
+
+\textBox{so what}{1}
+
+\newpage
+# Plots
+
+- spider com melhor, média e pior empresa
+- mapa das principais ferramentas
+- dados de me´dia de backlinks/ autoridade de dominio / qtd de paginas
+- Velocidade desktop e diff face a mobile
+
+```{r}
+# TODO: Acrecentar info quanto à população algures assim como algumas notas sobre o mercado
+# TODO: Acrescentar a descrição da math no ínicio
+```
+
+
