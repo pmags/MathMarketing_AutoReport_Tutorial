@@ -2,6 +2,9 @@
 *.txt
 *.log
 *.Rproj
+*.docx
+*.pdf
+*.gz
 data.csv
 .Rproj.user
 .Rhistory

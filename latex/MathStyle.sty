@@ -20,12 +20,14 @@
 \usepackage{caption} % allows image caption costumization
 \usepackage{blindtext}
 \usepackage{tcolorbox}
+\usepackage{multicol} % allows more than one column on text
+\usepackage{enumitem} % Allows to change lists
 
 %----------------------------------------------------------------------------------------
 %	FONTS FORMAT
 %----------------------------------------------------------------------------------------
 
-\setmainfont[SizeFeatures={Size=13}]{Calibri}
+\setmainfont[SizeFeatures={Size=10}]{Calibri}
 
 %----------------------------------------------------------------------------------------
 %	DOCUMENT COLORS
@@ -35,6 +37,7 @@
 \definecolor{MediumPurple}{HTML}{a8139d}
 \definecolor{LightPurple}{HTML}{c26cf0}
 \definecolor{DarkGray}{gray}{.172}
+\definecolor{Grey}{HTML}{bfbfbf}
 
 %----------------------------------------------------------------------------------------
 %	SECTION FORMAT
@@ -43,10 +46,11 @@
 \titleformat{\section}[block]
   {\titlerule\addvspace{4pt}\normalfont\fontsize{14}{16}\bfseries}
   {\thesection\enspace}{0pt}{}[\vspace{2pt}\titlerule]
-
+  
 \titleformat*{\section}{\color{DarkPurple}\normalfont\bfseries\Huge}
 \titleformat*{\subsection}{\color{DarkPurple}\normalfont\bfseries\LARGE}
-\titleformat*{\subsubsection}{\color{MediumPurple}\normalfont\bfseries\LARGE}
+\titleformat*{\subsubsection}{\color{Grey}\normalfont\bfseries\Large}
+
 
 %----------------------------------------------------------------------------------------
 %	CUSTOM HEADER AND FOOTER
