@@ -19,7 +19,8 @@
 \usepackage{lastpage}
 \usepackage{caption} % allows image caption costumization
 \usepackage{blindtext}
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins}
 \usepackage{multicol} % allows more than one column on text
 \usepackage{enumitem} % Allows to change lists
 
@@ -64,11 +65,11 @@
 
 
 \backgroundsetup{
-  scale=1.16,
+  scale=1.3,
   opacity=1,
   angle=0,
   position=current page.south,
-  hshift=-27pt,
+  hshift=0pt, %-27
   vshift=20pt,
   contents={%
   \small\sffamily%
@@ -94,12 +95,30 @@
 %	NEW COMMANDS
 %-------------------------------------------------------------------------------------
 
-\newcommand{\textBox}[2]{
-  \begin{tcolorbox}[width=\textwidth,colback={MediumPurple},title={#1},colupper=white]    
-      \textsc{#2}
-      %\blindtext[#2]     
-      %\includegraphics[scale=0.5]{frogimage.png}
+% http://texdoc.net/texmf-dist/doc/latex/tcolorbox/tcolorbox.pdf
+
+\newcommand{\impactBox}[2]{
+  \begin{tcolorbox}[width=\textwidth,
+  fonttitle = \sffamily\bfseries\large, 
+  colframe={DarkPurple},
+  colback={Grey},
+  title={#1},
+  colupper=white,
+  sharp corners]    
+    \textsc{#2}
   \end{tcolorbox} 
 }
 
-
+\newcommand{\attentionBox}[1]{
+  \begin{tcolorbox}[bicolor,
+  sidebyside,
+  lefthand width=0.5cm,
+  sharp corners,
+  boxrule=.4pt,
+  colback=yellow!30,
+  colbacklower=yellow!20]
+    \includegraphics[scale=1]{images/attention-sign.png}
+  \tcblower
+    \textsc{#1}%
+  \end{tcolorbox}
+}

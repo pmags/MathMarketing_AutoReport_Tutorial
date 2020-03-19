@@ -16,6 +16,7 @@ library(ggiraph) # Expand on ggplot library
 library(ggiraphExtra) # Expand on ggplot library
 library(ggradar) # Expands ggplot library with radar plot
 library(waffle)
+library(scales)
 
 # ======================================================================================= #
 # Create value boxes ----                                         
@@ -26,7 +27,7 @@ library(waffle)
 # dim: vector with dimensions of the box
 # colorPalette: Color gradientte
 
-valueBox <- function(value, label, dim, colorPalette = "Dark2") {
+valueBox <- function(value, label, dim = c(4,6), colorPalette = "Dark2") {
   
   # error msg when vectors have different sizes
   if (length(value) != length(label)) stop("Number of labels is different to values")
@@ -34,7 +35,7 @@ valueBox <- function(value, label, dim, colorPalette = "Dark2") {
   # Converts vectors into dataframe to use on ggplot
   df <- data.frame(value, label,
                    x = (rep(seq(2, 3*as.numeric(dim[2]), as.numeric(dim[2]) + 0.25), ceiling(length(value)/3)))[1:length(value)],
-                   y = rep(seq(1, as.numeric(dim[1])*ceiling(length(value)/3)+0.5, as.numeric(dim[1])+0.25),each=3)[1:length(value)]) %>% 
+                   y = rep(seq(0, as.numeric(dim[1])*ceiling(length(value)/3)+0.5, as.numeric(dim[1])+0.25),each=3)[1:length(value)]) %>% 
     mutate(h = rep(as.numeric(dim[1]),nrow(.)),
            w = rep(as.numeric(dim[2]),nrow(.)),
            color = factor(1:nrow(.)))
@@ -42,10 +43,10 @@ valueBox <- function(value, label, dim, colorPalette = "Dark2") {
   # Uses ggplot to create boxes
   ggplot(df, aes(x, y, height = h, width = w, label = label)) +
     geom_tile(aes(fill = color)) +
-    geom_text(color = "white", fontface = "bold", size = 10,
-              aes(label = value, x = x - 2.9, y = y + 1), hjust = 0) +
-    geom_text(color = "white", fontface = "bold",
-              aes(label = info, x = x - 2.9, y = y - 1), hjust = 0) +
+    geom_text(color = "white", fontface = "bold", size = 5,
+              aes(label = value, x = x - 1.5, y = y + 0.3), hjust = 0) +
+    geom_text(color = "white", fontface = "bold", size = 3,
+              aes(label = label, x = x - 1.5, y = y - 0.3), hjust = 0) +
     coord_fixed() +
     scale_fill_brewer(type = "qual",palette = colorPalette) +
     #geom_text(size = 20, aes(label = shape, family = font_family, x = x + 1.5, y = y + 0.5), alpha = 0.25) +
@@ -83,7 +84,7 @@ spiderPlot <- function(data, args = c("max","min","mean"), plotTitle = "Spider P
   
   # Changing ggradar function
   plot <- dataPlot  %>% 
-    ggradar(font.radar = "mono", 
+    ggradar(#font.radar = "mono", 
             values.radar = c("0","2","5"),
             gridline.min.linetype = "solid",
             gridline.mid.linetype = "solid",
@@ -93,9 +94,9 @@ spiderPlot <- function(data, args = c("max","min","mean"), plotTitle = "Spider P
             grid.max = 5, 
             axis.label.size = 3,
             grid.label.size = 3, 
-            legend.text.size = 10,
-            group.line.width = 1,
-            group.point.size = 3) +
+            legend.text.size = 8,
+            group.line.width = 0.7,
+            group.point.size = 2) +
     geom_path(data = funcCircleCoords(c(0, 0), 1 + abs(0 - ((1/9) * (5 - 0))), npoints = 360), 
               aes(x,y),
               lty = "solid", 
@@ -112,7 +113,8 @@ spiderPlot <- function(data, args = c("max","min","mean"), plotTitle = "Spider P
               colour = "grey", 
               size = 0.5)  +
     labs(title = plotTitle) +
-    theme(plot.title = element_text(size=12))
+    theme(plot.title = element_text(size=10),
+          legend.position="bottom")
 
     return(plot)
 }
@@ -141,13 +143,16 @@ wafflePlot <- function(data) {
                        select(percent) %>% 
                        unlist(),
                      rows = 10,
+                     size = 1,
+                     colors =  pallete, 
                      legend_pos = "botton",
                      flip = TRUE,
                      title = tool,
                      xlab = "1sq == 1%")
     
     # because waffle objects are ggplot objects too  
-    waffle_plots[[tool]] <- waffle +  theme(plot.title = element_text(size=12))
+    waffle_plots[[tool]] <- waffle +  
+      theme(plot.title = element_text(size=10, color = DarkPurple, face = "bold"))
   }
   
   # returns results

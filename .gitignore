@@ -5,6 +5,8 @@
 *.docx
 *.pdf
 *.gz
+*.out
+*.aux
 data.csv
 .Rproj.user
 .Rhistory
