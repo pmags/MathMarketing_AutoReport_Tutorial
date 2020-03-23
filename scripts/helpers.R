@@ -43,10 +43,10 @@ valueBox <- function(value, label, dim = c(4,6), colorPalette = "Dark2") {
   # Uses ggplot to create boxes
   ggplot(df, aes(x, y, height = h, width = w, label = label)) +
     geom_tile(aes(fill = color)) +
-    geom_text(color = "white", fontface = "bold", size = 5,
-              aes(label = value, x = x - 1.5, y = y + 0.3), hjust = 0) +
+    geom_text(color = "white", fontface = "bold", size = 8,
+              aes(label = value, x = x - 0.3 , y = y + 0.3), hjust = 0) +
     geom_text(color = "white", fontface = "bold", size = 3,
-              aes(label = label, x = x - 1.5, y = y - 0.3), hjust = 0) +
+              aes(label = label, x = x - 0.3 , y = y - 0.3), hjust = 0) +
     coord_fixed() +
     scale_fill_brewer(type = "qual",palette = colorPalette) +
     #geom_text(size = 20, aes(label = shape, family = font_family, x = x + 1.5, y = y + 0.5), alpha = 0.25) +
@@ -137,14 +137,17 @@ wafflePlot <- function(data) {
   
   # Loop over selected tools
   for (tool in names(data)[names(data) %in% toolsDefault]) {
-    waffle <- waffle(data %>% 
-                       count_(tool) %>% 
-                       mutate(percent = round(n/nrow(data)*100)) %>%
-                       select(percent) %>% 
-                       unlist(),
+    
+    plotData <- data %>% 
+      count_(tool) %>% 
+      mutate(percent = round(n/nrow(data)*100)) %>%
+      select(percent) %>% 
+      unlist()
+    
+    waffle <- waffle(plotData,
                      rows = 10,
                      size = 1,
-                     colors =  pallete, 
+                     colors =  ifelse(plotData == 100, pallete[2], pallete), 
                      legend_pos = "botton",
                      flip = TRUE,
                      title = tool,

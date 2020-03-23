@@ -25,10 +25,23 @@ source("scripts/eda.R")
   
 # Key takeways
 
-The market for fitness gyms in Portugal has been facing an aggressive growth in the past years. Several large Groups, both national and international either opened or acquired brands and are expanding their networks. Research shows that about 18% of the Portuquese (15y+) went to a Gym/ health club in 2019. That number has been steadily growing since 2013. The Brands evaluated in our study have all invested in digital capabilities to attract, engage and convert people into users. All of them have sign-up forms on their websites and constantly advertise promotions and discounts to attract new clients. However, the digital capabilities of the market have not evolved at the same pace with the number of facilities and lags strength to compete 
+**Wellness is a daily active pursuit**. Today's generation, both young and old, are eating healthier and exercising more than ever before. Technology has enabled greater access to wellness information and has put health monitoring into the palm of their hands. As a result, today’s expenditure on everything fitness related has increased, especially among millennials.
+
+For the Health Club Chains that we have studied, **going digital is not an option, it is an outermost necessity**. Communities, normally formed online, are increasingly becoming the top motivator for new gym enrollers. New comers as technology-based applications offering training programs or new take on traditional models as low-cost fitness club, have help reshape the industry. **\textcolor{DarkPurple}{Low switching costs, wellness trends and fierce competition have all contributed into turning digital an integral, crucial and expected part of the overall consumer experience}**.
+
+All health club chains included on our study have invested on their digital capacities to engage and convert. All include signature forms and actively promote affiliation packages and discounts on-line and over social networks. Despite the solid web infrastructure, shown by the score of 3,8 on the IQ_technic dimension, **\textcolor{DarkPurple}{its potential doesn’t seem to been used to its fullest}**.
+
+The average Analytics score is low. Together with the enormous spending on adds and other forms of promotion, may be a symptom for both **low conversion ratios, poor budget control and a general lack of control over consumers conversion journey**. Despite the intense competition and low switching costs, it is surprising to conclude that none of the studied brands have implemented to this date an automation strategy. **\textcolor{DarkPurple}{It is both a threat and an opportunity given the breakneck speed that technology is reshaping fitness.}** 
+
+```{r include=FALSE}
+tiles <- grid.arrange(valueTiles$iq_analytics,
+             valueTiles$iq_technic, 
+             valueTiles$iq_experience,nrow= 3)
+```
+
 
 ```{r echo=FALSE}
-iqPlot
+grid.arrange(tiles, iqPlot, ncol = 2,widths=c(1,4))
 ```
 
 \newpage
@@ -36,21 +49,22 @@ iqPlot
 
 ## Ads & Analytics
 
-Looking at the 8 Brands we evaluated for this study, we see Social, search and display as the main sources for distributing Adverising. No surprise here. However, with an average of 1,7/5 in analytical capabilities. Clearly brands have to work out a lot in order to understand the impact of their advertising investments and, most important, understand the ins and hows of their customer journey. 
+Looking at the Brands we evaluated for this study, we see Social, search and display as the main sources for distributing Advertising. No surprise here. However, with an average of 1,7/5 in analytical capabilities. 
 
-\attentionBox{Automation is non-existent in the market. Not one of the brands studied in capable of creating automated conversations with prospects and/or client. In a very competitive service market such as this one, in which the barriers to change are slim, it is surprising that companies have not invested in ways to build relationships with customers and leads outside of the physical space of the gyms themselves.}
+Based on our research we concluded that brands rely solely on Web Analytics and basic Tag Management to manage their on-line presence. Only brand has a heat map tool implemented and only one had some events tagged. **This are clear outliers and the majority of the industry is passing by the opportunity to collect data and know better their users.**
+
+\attentionBox{Companies that invest in their analytical capabilities will be better equipped to understand what drives customer purchases and will better invest in attracting new ones. Connecting that knowledge with automation tools will decrease the cost of client acquisition and increase engagement with customers and leads.}
+
+\impactBox{so what}{At Math Marketing \textbf{we combine Data Science skills, Web development experience and profound knowledge on a variety of industries}. This enables our teams to understand our client’s business, map their operations, transactions and events and implement an efficient data gather plan without compromising the existent web performance.
+\textbf{Once the data pipelines are in place we help our client’s crunch, navigate the numbers and identify trends  which help them make insightful decisions.}}
 
 ## Automation
 
-Automation is non-existent in the market. Not one of the brands studied in capable of creating automated conversations with prospects and/or client. In a very competitive service market such as this one, in which the barriers to change are slim, it is surprising that companies have not invested in ways to build relationships with customers and leads outside of the physical space of the gyms themselves.
+Automation is non-existent in the market. Not one of the brands studied in capable of creating automated conversations with prospects and/or client. In a very competitive service market such as this one, in which the barriers to switching are slim, it is surprising that companies have not invested in ways to build relationships with customers and leads outside of the physical space of the gyms themselves.
 
-\attentionBox{so what}
+\attentionBox{Given the pace of today's digital landscape and the rithm of transformation on the fitness and welness market, automation is the most efficient option to keep up with the change and offer potential or regular customers a personalized and segmented experience. The current lack of investment and the decreasing costs of implementing automation strategies pose a threat for current players and an opporrunity for new comers to quickly gain reap significant market share and benefits with small initial investment}
 
-## Botton line
-
-Companies that invest in their analytical capabilities will be better equipped to understand what drives customer purchases and will better invest in attracting new ones. Connecting that knowledge with automation tools will decrease the cost of client acquisition and increase engagement with customers and leads. 
-
-\attentionBox{so what}
+\impactBox{so what}{Math Marketing is a certificated partned with all major automation platforms as Hubspot, Acoustics and Salesforce(Pardout) and manages daily operations for big groups in education and financial markets.We estimate that around 3\% of all university students in Brazil have been converted using our automation solutions.}
 
 \newpage
 
@@ -68,5 +82,15 @@ grid.arrange(pagenumber_plot,
 n <- length(toolWaffle)
 nCol <- floor(sqrt(n))
 do.call("grid.arrange",c(toolWaffle))
+```
+
+# Market summary and trends
+
+The market for fitness gyms in Portugal has been facing an aggressive growth in the past years. Several large Groups, both national and international either opened or acquired brands and are expanding their networks. Research shows that about 18% of the Portuquese (15y+) went to a Gym/ health club in 2019. That number has been steadily growing since 2013.
+
+This study was made we publicly available information from both financial statements, web pages and social network. All online information was collected by Math Marketing proprietary diagnosis tools off which only a fraction was used for this study. Only companies with operating in Portugal and with a total turnover above 3 Milion Euros in 2018 where included.2
+
+```{r echo=FALSE}
+marketPie
 ```
 

@@ -23,6 +23,36 @@ gymdata <- read_delim("data/data.csv", ";",
 
 gymdata$nome <- as.factor(gymdata$nome)
 
+
+# ======================================================================================= #
+# market share ----                                         
+# ======================================================================================= #
+
+marketPie <- gymdata %>%  
+  select(nome,market_share) %>% 
+  arrange(desc(market_share)) %>% 
+  mutate(cumsum_marketShare = cumsum(market_share),
+         group = as.factor(ifelse(cumsum_marketShare < 0.8, 
+                                  yes = as.character(nome), 
+                                  no = "others"))) %>% 
+  group_by(group) %>% 
+  summarise(market_share = sum(market_share)) %>% 
+  ggplot(aes(x = "", y = market_share, fill = group)) +
+  geom_col() +
+  coord_polar("y") +
+  pieTheme() +
+  scale_fill_manual(values = pallete) +
+  theme(axis.text.x = element_blank(), 
+        legend.direction = "vertical",
+        legend.position = "left") +
+  geom_text(aes(label = percent(market_share)),
+            position = position_stack(vjust = 0.5), 
+            size = 3) +
+  labs(title = "Market Share", 
+       caption = "source: publicly available financial statements",
+       fill = "") 
+
+
 # ======================================================================================= #
 # Content plots ----                                         
 # ======================================================================================= #
@@ -35,7 +65,7 @@ backlink_plot <- gymdata %>%
   barTheme() +
   theme(axis.title=element_blank()) +
   labs(title = "Total backlinks",
-       source = "MathMarketing")
+       caption = "source: MathMarketing")
 
 pagerank_plot <- gymdata %>% 
   ggplot(aes(x = reorder(nome, Page_Rank), y = Page_Rank)) + 
@@ -84,20 +114,28 @@ iqPlot <- spiderPlot(gymdata, plotTitle = "")
 # waffle ----                                         
 # ======================================================================================= #
 
-toolWaffle <- wafflePlot(gymdata)
 
+toolWaffle <- wafflePlot(gymdata)
 
 # ======================================================================================= #
 # Value boxes ----                                         
 # ======================================================================================= #
 
-# TODO: Fazer lista com do.call sobre o vetor para criar um conjuto de gráficos e usar grid extra para os organizar
-
 valueBoxes <- valueBox(value = apply(select(gymdata,contains("iq")),2,mean),
          label = names(apply(select(gymdata,contains("iq")),2,mean)),
          dim = c(1.5,3.5),
          colorPalette = "Spectral")
- 
+
+valueTiles <- list()
+
+data <- data.frame(label = names(apply(select(gymdata,contains("iq")),2,mean)),
+           value = round(as.numeric(apply(select(gymdata,contains("iq")),2,mean)),2))
+
+for (tool in data$label) {
+  valueTiles[[tool]] <- valueBox(value = filter(data, label == tool)[2] , 
+           label = tool, 
+           dim = c(1.5,1.5),colorPalette = "PRGn")
+}
 
   
 

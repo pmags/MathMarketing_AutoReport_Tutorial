@@ -18,7 +18,7 @@
 
 DarkPurple <-  "#680c62"
 Grey <-  "#bfbfbf"
-pallete <- c("#5c2359","#bfbfbf","#c059bb") 
+pallete <- c("#bfbfbf","#5c2359","#c059bb", "#af6aab") 
 
 # ======================================================================================= #
 # Pie chart theme ----                                         
@@ -33,9 +33,9 @@ pieTheme <- function(base_size = 10,
                 base_line_size = base_line_size) %+replace%
     theme(
       plot.title = element_text(
-        color = rgb(25, 43, 65, maxColorValue = 255), 
+        color = DarkPurple, 
         face = "bold",
-        size = 14,
+        size = 10,
         hjust = 0),
       axis.title.x = element_blank(),
       axis.title.y = element_blank(),

@@ -39,6 +39,8 @@
 \definecolor{LightPurple}{HTML}{c26cf0}
 \definecolor{DarkGray}{gray}{.172}
 \definecolor{Grey}{HTML}{bfbfbf}
+\definecolor{lightGreen}{HTML}{ddeedd}
+\definecolor{mediumGreen}{HTML}{77bb77}
 
 %----------------------------------------------------------------------------------------
 %	SECTION FORMAT
@@ -100,24 +102,24 @@
 \newcommand{\impactBox}[2]{
   \begin{tcolorbox}[width=\textwidth,
   fonttitle = \sffamily\bfseries\large, 
-  colframe={DarkPurple},
-  colback={Grey},
+  colframe={mediumGreen},
+  colback={lightGreen},
   title={#1},
-  colupper=white,
-  sharp corners]    
-    \textsc{#2}
+  sharp corners]  
+  \textsc{#2}
   \end{tcolorbox} 
 }
 
 \newcommand{\attentionBox}[1]{
-  \begin{tcolorbox}[bicolor,
+  \begin{tcolorbox}[fonttitle = \sffamily\bfseries\large,
+  bicolor,
   sidebyside,
   lefthand width=0.5cm,
   sharp corners,
   boxrule=.4pt,
   colback=yellow!30,
   colbacklower=yellow!20]
-    \includegraphics[scale=1]{images/attention-sign.png}
+    \includegraphics[scale=5]{images/attention-sign.png}
   \tcblower
     \textsc{#1}%
   \end{tcolorbox}
