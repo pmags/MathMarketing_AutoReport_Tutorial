@@ -7,6 +7,7 @@
 *.gz
 *.out
 *.aux
+\tutorial
 data.csv
 .Rproj.user
 .Rhistory
