@@ -8,8 +8,6 @@
 # ======================================================================================= #
 
 ## Import libraries which will be needed for the report
-library(ggplot2)
-library(emojifont)
 library(tidyverse)
 library(gridExtra) # Allows for multiple plots with grid arrangement
 library(ggiraph) # Expand on ggplot library

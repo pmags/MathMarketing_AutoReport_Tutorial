@@ -1,20 +1,22 @@
 ---
 title: "QiDigital_FitnessMarket"
-output: 
-  pdf_document:
-    latex_engine: xelatex
-    includes:
-      in_header: latex/MathStyle.sty
-      before_body: latex/before_body.tex
-      after_body: latex/after_body.tex
-    template: latex/MathTemplate.tex
-geometry: margin=2.5cm
-documentclass: article
-subparagraph: yes
-pdf-cover-image: "images/mathCover.pdf"
-report-title: "How fit is your marketing?"
-report-subtitle: "Portuguese Fitness Industry" 
 footer-image: images/footer.png
+geometry: margin=2.5cm
+output:
+  pdf_document:
+    includes:
+      after_body: latex/after_body.tex
+      before_body: latex/before_body.tex
+      in_header: latex/MathStyle.sty
+    latex_engine: xelatex
+    template: latex/MathTemplate.tex
+  html_notebook:
+    df_print: paged
+pdf-cover-image: images/mathCover.pdf
+report-subtitle: Portuguese Fitness Industry
+report-title: How fit is your marketing?
+subparagraph: yes
+documentclass: article
 ---
 
 ```{r sourceScripts, message=FALSE, warning=FALSE, include=FALSE}
