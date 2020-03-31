@@ -1,7 +1,6 @@
 ---
 title: "QiDigital_FitnessMarket"
-footer-image: images/footer.png
-geometry: margin=2.5cm
+## Defines output
 output:
   pdf_document:
     includes:
@@ -12,6 +11,9 @@ output:
     template: latex/MathTemplate.tex
   html_notebook:
     df_print: paged
+## Output options to be used for pdf
+footer-image: images/footer.png
+geometry: margin=2.5cm
 pdf-cover-image: images/mathCover.pdf
 report-subtitle: Portuguese Fitness Industry
 report-title: How fit is your marketing?

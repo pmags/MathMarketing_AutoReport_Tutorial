@@ -13,15 +13,18 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ikuyadeu.r",
-		"mikhail-arkhipov.r"
-	]
+		"mikhail-arkhipov.r",
+		"James-Yu.latex-workshop",
+		"yzhang.markdown-all-in-one"
+
+	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "R --version",
-
+	"postCreateCommand": "R -e 'tinytex::install_tinytex()'"
+	
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	// "remoteUser": "vscode"
 }

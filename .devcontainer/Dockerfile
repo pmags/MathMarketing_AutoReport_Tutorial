@@ -46,29 +46,35 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* 
     
 # Script with necessary setup
-# RUN install2.r --error \
-#    --deps TRUE \
-#    flextable \
-#    gdtools \
-#    officer \
-#    xml2 \
-#    rvest \
-#    httr \
-#    tidyverse \
-#    dplyr \
-#    devtools \
-#    gridExtra \
-#    ggiraph \
-#    ztable \
-#    ggiraphExtra \
-#    ggradar \
-#    waffle \
-#    scales \
-#    knitr \
-#    rmarkdown \
-#    tinytex 
-    # && R -e "tinytext::install_tinytext()"
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ghostscript \
+        lmodern \
+        pandoc-citeproc \
+        qpdf \
+        r-cran-formatr \
+        r-cran-ggplot2 \
+        r-cran-knitr \
+		r-cran-rmarkdown \
+        r-cran-runit \
+        r-cran-testthat \
+        texinfo \
+        texlive-fonts-extra \
+        texlive-fonts-recommended \
+        texlive-latex-extra \
+        texlive-latex-recommended \
+        texlive-luatex \
+        texlive-plain-generic \
+        texlive-science \
+        texlive-xetex \
+    && install.r binb linl pinp tint \
+    && mkdir ~/.R \
+        && echo _R_CHECK_FORCE_SUGGESTS_=FALSE > ~/.R/check.Renviron \
+        && cd /usr/local/bin \
+        && ln -s /usr/lib/R/site-library/littler/examples/render.r .
 
+RUN apt-get update \
+    && R -e "install.packages('tinytex'); install.packages('xml2'); install.packages('gridExtra'); install.packages('ggiraph');install.packages('ggiraphExtra'); install.packages('ggradar');install.packages('waffle');install.packages('scales');install.packages('devtools')"
 
 # Switch back to dialog for any ad-hoc use of apt-get
-ENV DEBIAN_FRONTEND=dialog
+ENV DEBIAN_FRONTEND=dialogDockerfile
