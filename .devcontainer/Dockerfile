@@ -48,6 +48,12 @@ RUN apt-get update \
 # Script with necessary setup
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        libxml2-dev \
+        #libcairo2-dev \
+        #libpq-dev \
+        #libssl-dev \
+        #libcurl4-openssl-dev \
+        #libssh2-1-dev \
         ghostscript \
         lmodern \
         pandoc-citeproc \
@@ -73,8 +79,14 @@ RUN apt-get update \
         && cd /usr/local/bin \
         && ln -s /usr/lib/R/site-library/littler/examples/render.r .
 
-RUN apt-get update \
-    && R -e "install.packages('tinytex'); install.packages('xml2'); install.packages('gridExtra'); install.packages('ggiraph');install.packages('ggiraphExtra'); install.packages('ggradar');install.packages('waffle');install.packages('scales');install.packages('devtools')"
+RUN R -e "install.packages(c('tidyverse','dplyr','tinytex'),repos='http://cran.rstudio.com/')"
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialogDockerfile
+
+                            # 'gridExtra',
+                            # 'ggiraph',
+                            # 'ggiraphExtra',
+                            # 'waffle',
+                            # 'scales',
+                            # 'devtools')
