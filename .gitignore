@@ -14,5 +14,7 @@
 .Rhistory
 .RData
 .Ruserdata
+*.bck
+
 
 

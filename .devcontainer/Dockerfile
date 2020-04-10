@@ -1,8 +1,3 @@
-#-------------------------------------------------------------------------------------------------------------
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
-#-------------------------------------------------------------------------------------------------------------
-
 FROM rocker/r-apt:bionic
 
 # Avoid warnings by switching to noninteractive
@@ -32,34 +27,16 @@ RUN apt-get update \
     && apt-get update \
     && apt-get -y install dotnet-runtime-2.1 \
     #
-    # [Optional] Update a non-root user to match UID/GID - see https://aka.ms/vscode-remote/containers/non-root-user.
-    && if [ "$USER_GID" != "1000" ]; then groupmod docker --gid $USER_GID; fi \
-    && if [ "$USER_UID" != "1000" ]; then usermod --uid $USER_UID docker; fi \
-    # [Optional] Add sudo support for the non-root user
-    && apt-get install -y sudo \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/docker\
-    && chmod 0440 /etc/sudoers.d/docker \
-    #
-    # Clean up
-    && apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/* 
-    
-# Script with necessary setup
-RUN apt-get update \
+    # Preparing to run rmarkdown and pandoc
+    && apt-get update \
     && apt-get install -y --no-install-recommends \
         libxml2-dev \
-        #libcairo2-dev \
-        #libpq-dev \
-        #libssl-dev \
-        #libcurl4-openssl-dev \
-        #libssh2-1-dev \
         ghostscript \
         lmodern \
         pandoc-citeproc \
         qpdf \
         r-cran-formatr \
-        r-cran-ggplot2 \
+        #r-cran-ggplot2 \
         r-cran-knitr \
 		r-cran-rmarkdown \
         r-cran-runit \
@@ -74,19 +51,30 @@ RUN apt-get update \
         texlive-science \
         texlive-xetex \
     && install.r binb linl pinp tint \
+    #
+    # Installs tidyverse
+    && install2.r -s --deps TRUE \
+        httr \ 
+        rvest \
+        usethis \
+        covr \
+        rversions \
+        tidyverse \
+        dplyr \
+        devtools \
     && mkdir ~/.R \
-        && echo _R_CHECK_FORCE_SUGGESTS_=FALSE > ~/.R/check.Renviron \
-        && cd /usr/local/bin \
-        && ln -s /usr/lib/R/site-library/littler/examples/render.r .
-
-RUN R -e "install.packages(c('tidyverse','dplyr','tinytex'),repos='http://cran.rstudio.com/')"
-
+    && echo _R_CHECK_FORCE_SUGGESTS_=FALSE > ~/.R/check.Renviron \
+    && cd /usr/local/bin \
+    && ln -s /usr/lib/R/site-library/littler/examples/render.r . \
+    # Run setup packages
+    # && R -e "install.packages(c('tidyverse','dplyr'),repos='http://cran.rstudio.com/')" \
+    # Clean
+    && apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* 
+    
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialogDockerfile
 
-                            # 'gridExtra',
-                            # 'ggiraph',
-                            # 'ggiraphExtra',
-                            # 'waffle',
-                            # 'scales',
-                            # 'devtools')
+
+
